@@ -10,7 +10,7 @@ The application uses an embedded database ([nedb](https://github.com/louischatri
 Enter folder: `cd expresscart`
 Install dependencies: `npm install`
 Start application: `npm start`
-Visit [http://127.0.0.1:7777](http://127.0.0.1:4000) in your browser
+Visit [http://127.0.0.1:4000](http://127.0.0.1:4000) in your browser
 
 
 
