@@ -1,0 +1,107 @@
+{{> menu}}
+<div class="col-lg-9">
+    <form method="post" class="form-horizontal" id="insert_form" action="/admin/product/update" data-toggle="validator">
+        <div class="col-lg-10">
+            <div class="page-header">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Upload image</button>
+                    <button id="frm_edit_product_save" class="btn btn-success">Save product <i class="fa fa-floppy-o"></i></button>
+                </div>
+                <h2>Edit product</h2>
+            </div>
+            <div class="form-group">
+                <label for="frm_product_title" class="col-sm-2 control-label">Product title *</label>
+                <div class="col-sm-10">
+                    <input type="text" name="frm_product_title" class="form-control" minlength="5" maxlength="200" value="{{result.product_title}}" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="frm_product_price" class="col-sm-2 control-label">Product price *</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <input type="number" name="frm_product_price" class="form-control" value="{{result.product_price}}" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="frm_product_published" class="col-sm-2 control-label">Status</label>
+                <div class="col-sm-6">
+                    <select class="form-control" id="frm_product_published" name="frm_product_published">
+                        <option value="true"  {{select_state result.product_published "true"}}>Published</option>
+                        <option value="false" {{select_state result.product_published "false"}}>Draft</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="frm_product_published" class="col-sm-2 control-label">Featured</label>
+                <div class="col-sm-10">
+                    <input type="checkbox" id="frm_product_featured" {{#ifCond result.product_featured "==" "on"}}checked{{/ifCond}} name="frm_product_featured">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="editor" class="col-sm-2 control-label">Product description (Markdown) *</label>
+                <div class="col-sm-10">
+                    <textarea id="editor" minlength="5" rows="10" name="frm_product_description" class="form-control" required>{{result.product_description}}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Permalink</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="frm_product_permalink" id="frm_product_permalink" placeholder="Permalink for the article" value={{result.product_permalink}}>
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" id="validate_permalink" type="button">Validate</button>
+                            <button class="btn btn-warning" id="generate_permalink" type="button">Generate</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2>Product images</h2>
+                {{#each images}}
+                    <div class="col-md-3">                   
+                        <p>
+                            <a data-id="{{this.path}}" class="btn-delete-image btn btn-danger btn-sm">Delete</a> 
+                            {{#ifCond this.product_image '==' true}}
+                                <span class="label label-info">main image</span>
+                            {{else}}
+                                <a data-id="{{this.path}}" class="set-as-main-image btn btn-sm btn-success">Set as main image</a>
+                            {{/ifCond}}
+                        </p>
+                        <img src="{{this.path}}" class="product-main-image img-responsive">
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+        <input type="hidden" name="frm_product_id" id="frm_product_id" value="{{result._id}}" />
+    </form>
+</div>
+{{#if editor}}
+    <script src="/javascripts/markdown-it.min.js"></script>
+    <script src="/javascripts/markdown-editor.js"></script>
+{{/if}}
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" id="upload_form" name="upload_form" action="/admin/file/upload" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Product image upload</h4>
+                </div>
+                <div class="modal-body">
+                    <span class="btn btn-info btn-file">
+                        Select file<input type="file" name="upload_file" id="upload_file">
+                    </span>
+                    <input type="hidden" id="directory" name="directory" value="{{result._id}}"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="saveButton" name="saveButton" class="btn btn-primary">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

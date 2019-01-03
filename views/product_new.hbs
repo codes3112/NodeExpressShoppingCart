@@ -1,0 +1,65 @@
+{{> menu}}
+<div class="col-lg-9">
+    <form method="post" class="form-horizontal" id="insert_form" action="/admin/product/insert" data-toggle="validator">
+        <div class="col-lg-10">
+            <div class="page-header">
+                <div class="pull-right">
+                    <button id="frm_edit_product_save" class="btn btn-success" type="submit">Add product <i class="fa fa-plus"></i></button>
+                </div>
+                <h2>New product</h2>
+            </div>
+            <div class="form-group">
+                <label for="frm_product_title" class="col-sm-2 control-label">Product title *</label>
+                <div class="col-sm-10">
+                    <input type="text" name="frm_product_title" class="form-control" minlength="5" maxlength="200" value="{{product_title}}" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="frm_product_price" class="col-sm-2 control-label">Product price *</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <input type="number" name="frm_product_price" class="form-control" value="{{product_price}}" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="frm_product_published" class="col-sm-2 control-label">Status</label>
+                <div class="col-sm-6">
+                    <select class="form-control" id="frm_product_published" name="frm_product_published">
+                        <option value="true" selected>Published</option>
+                        <option value="false">Draft</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="frm_product_published" class="col-sm-2 control-label">Featured</label>
+                <div class="col-sm-10">
+                    <input type="checkbox" id="frm_product_featured" {{#ifCond result.product_featured "==" "on"}}checked{{/ifCond}} name="frm_product_featured">
+                </div>
+            </div>
+            <div class="form-group" id="editor-wrapper">
+                <label for="editor" class="col-sm-2 control-label">Product description (Markdown) *</label>
+                <div class="col-sm-10">
+                    <textarea id="editor" minlength="5" rows="10" name="frm_product_description" class="form-control" required>{{product_description}}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Permalink</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="frm_product_permalink" id="frm_product_permalink" placeholder="Permalink for the article" value={{product_permalink}}>
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" id="validate_permalink" type="button">Validate</button>
+                            <button class="btn btn-warning" id="generate_permalink" type="button">Generate</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{{#if editor}}
+    <script src="/javascripts/markdown-it.min.js"></script>
+    <script src="/javascripts/markdown-editor.js"></script>
+{{/if}}

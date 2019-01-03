@@ -1,0 +1,82 @@
+<div class="row">	
+	<div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+        <h2>Shopping cart</h2>
+        <div class="panel panel-default" style="margin-top: 30px;">
+            <div class="panel-heading">Cart contents</div>
+            <div class="panel-body">
+                <div class="row cart-row">
+                    <div class="cart-contents-title col-md-4">
+                        <div class="hidden-xs col-md-12">
+                            <div class="col-md-8 col-md-offset-2">
+                                Quantity:
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden-xs cart-contents-title col-md-5">
+                        Product name:
+                    </div>
+                    <div class="cart-contents-title text-right col-md-3">
+                        <div class="col-md-12">
+                            Total price:
+                        </div>
+                    </div>
+                </div>
+                {{#each session.cart}}
+                    <div class="row cart-row">
+                        <div class="col-md-4">
+                            <div class="cart-item-row col-xs-2 col-md-2">
+                                <a class="cart-delete-button" data-id="{{@key}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="col-xs-8 col-md-8">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-sm qty-btn-minus" type="button">-</button>
+                                    </span>
+                                    <input type="text" class="form-control input-sm add-color text-center" id="{{@key}}" maxlength="3" value="{{this.quantity}}">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-sm qty-btn-plus" type="button">+</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="cart-item-row col-xs-2 col-md-2">
+                                <a class="cart-update-button" data-id="{{@key}}"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="cart-item-row text-left col-xs-8 col-md-5">
+                            <a class="cart-link" href="/product/{{this.link}}">{{this.title}}</a>
+                        </div>
+                        <div class="cart-item-row text-right col-xs-4 col-md-3">
+                            <div class="col-md-12">
+                                {{format_amount this.total_item_price}}
+                            </div>
+                        </div>     
+                    </div>
+                {{/each}}
+                <div class="row">
+                    <div class="cart-contents-title col-md-12">
+                        {{#ifCond session.shipping_cost_applied '==' true}}
+                            <div class="col-xs-12 col-lg-12 text-right">
+                                Shipping: {{format_amount config.flat_shipping}}
+                            </div>
+                        {{else}}    
+                             <div class="col-xs-12 col-lg-12 text-right">
+                                Shipping: FREE
+                            </div>
+                        {{/ifCond}}
+                        <div class="col-xs-12 col-lg-12 text-right">
+                            Total: {{format_amount session.total_cart_amount}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-lg-6 text-left">
+                <button class="btn btn-danger" id="empty-cart">Empty cart</button>
+            </div>
+            <div class="text-right col-xs-6 col-md-6">
+                <a href="/checkout" class="btn btn-default">Checkout</a>
+            </div>
+        </div>
+	</div>
+</div>

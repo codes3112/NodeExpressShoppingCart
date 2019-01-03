@@ -1,0 +1,62 @@
+{{> cart}}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        {{#ifCond payment_approved '==' true}}
+            <h3 class="text-center text-success">Your payment has been successfully completed</h3>
+        {{else}}
+            <h3 class="text-center text-danger">{{payment_message}}</h3>
+            <div class="panel panel-default" style="margin-top: 30px;">
+                <div class="panel-heading">Customer details</div>
+                <div class="panel-body">
+                    <form class="shipping-form" action="/checkout_action" method="post" role="form" data-toggle="validator" novalidate="false">
+                        <div class="col-xs-12 col-md-8">
+                            <div class="col-xs-12 col-md-12">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="ship_email" name="ship_email" minlength="5" placeholder="Email address" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="ship_firstname" name="ship_firstname" placeholder="First name" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="ship_lastname" name="ship_lastname" placeholder="Last name" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="ship_addr1" name="ship_addr1" placeholder="Address 1" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="ship_addr2" name="ship_addr2" placeholder="Address 2 (optional)">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="ship_country" name="ship_country" placeholder="Country" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="ship_state" name="ship_state" placeholder="State/Province" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" id="ship_postcode" name="ship_postcode" placeholder="Post/Zip code" required>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="paypal_button col-xs-12 col-md-4 text-center">
+                            <button  id="checkout_paypal" class="btn btn-success" type="submit"><i  aria-hidden="true"></i> Checkout <i  aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {{/ifCond}}
+    </div>
+</div>

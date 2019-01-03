@@ -1,0 +1,72 @@
+<div class="row">
+	<form action="/search" id="search_form" method="post">
+		<div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 search-bar">
+            <div class="col-md-12">
+                <div class="search-bar-input input-group">
+                    <input type="text" name="frm_search" id="frm_search" class="form-control input-lg" placeholder="Search the shop">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success btn-lg" id="btn_search" type="submit">Search</button>
+                        <a href="/" class="hidden-xs btn btn-warning btn-lg"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    </span>
+                </div>
+            </div>
+		</div>
+	</form>
+</div>
+<div class="row">	
+	<div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+        {{#if filtered}}
+            <div class="product-layout left-pad-30 col-md-12">
+                <strong>Showing results for: {{search_term}}</strong>
+            </div>
+        {{/if}}
+        <div class="product-layout col-md-12">
+            {{#ifCond results.length '==' 0}}
+                <div class="col-md-12">
+                    <p class="text-danger">No products found</p>
+                </div>
+            {{/ifCond}}
+            {{#each results}}
+                <div class="col-md-3">
+                    <div class="thumbnail">
+                        {{#if product_permalink}}
+                            <div class="product_wrapper">
+                                <a href="/product/{{this.product_permalink}}">
+                                    <div class="vertical-center thumbnail-image-container">
+                                        {{#if product_image}}
+                                            <img class="img-responsive" src="{{this.product_image}}" alt="...">
+                                        {{else}}
+                                            <img class="img-responsive" src="/uploads/placeholder.png" alt="...">
+                                        {{/if}}
+                                    </div>
+                                    <h3 class="product-title product-title-home top-pad-10">
+                                        {{this.product_title}}
+                                    </h3>
+                                </a>
+                            </div>
+                        {{else}}                     
+                            <a href="/product/{{this._id}}">
+                                <div class="vertical-center thumbnail-image-container">
+                                    {{#if product_image}}
+                                        <img class="img-responsive" src="{{this.product_image}}" alt="...">
+                                    {{else}}
+                                        <img class="img-responsive" src="/uploads/placeholder.png" alt="...">
+                                    {{/if}}
+                                </div>
+                                <h3 class="product-title product-title-home top-pad-10">
+                                    {{this.product_title}}
+                                </h3>
+                            </a>
+                        {{/if}}
+                        <h3 class="product-price text-center">
+                            {{format_amount product_price}}
+                        </h3>
+                        <p class="text-center">
+                            <a class="btn btn-primary add-to-cart" data-id="{{this._id}}" role="button">Add to cart</a>
+                        </p>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+	</div>
+</div>

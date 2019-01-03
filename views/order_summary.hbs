@@ -1,0 +1,33 @@
+<h1>Your order has been successfully placed </h1>
+<div class="col-lg-9">
+    <div class="col-lg-12">
+        <h2>Order Summary</h2>
+    </div>
+    <div class="order-layout col-md-8">
+        
+        <ul class="list-group">
+            <li class="list-group-item list-group-input-pad">
+                {{!-- <strong> Order status: </strong><span class="text-{{get_status_color result.order_status}} pull-right">{{result.order_status}}</span> --}}
+                {{ title }}
+            </li>
+            <li class="list-group-item"><strong> Order date: </strong><span class="pull-right">{{format_date result.order_date "DD/MM/YYYY HH:MM"}}</span></li>
+            <li class="list-group-item"><strong> Order ID: </strong><span class="pull-right">{{result._id}}</span></li>
+            <li class="list-group-item"><strong> Order total amount: </strong><span class="pull-right">{{format_amount result.order_total}}</span></li>
+            <li class="list-group-item"><strong> Email address: </strong><span class="pull-right">{{result.order_email}}</span></li>
+            <li class="list-group-item"><strong> First name: </strong><span class="pull-right">{{result.order_firstname}}</span></li>
+            <li class="list-group-item"><strong> Last name: </strong><span class="pull-right">{{result.order_lastname}}</span></li>
+            <li class="list-group-item"><strong> Address 1: </strong><span class="pull-right">{{result.order_addr1}}</span></li>
+            <li class="list-group-item"><strong> Address 2: </strong><span class="pull-right">{{result.order_addr2}}</span></li>
+            <li class="list-group-item"><strong> Country: </strong><span class="pull-right">{{result.order_country}}</span></li>
+            <li class="list-group-item"><strong> State: </strong><span class="pull-right">{{result.order_state}}</span></li>
+            <li class="list-group-item"><strong> Postcode/Zipcode: </strong><span class="pull-right">{{result.order_postcode}}</span></li>
+            
+            <li class="list-group-item">&nbsp;</li>
+            <li class="list-group-item"><strong class="text-info">Products ordered</strong></li>
+            {{#each result.order_products}}
+                <li class="list-group-item">{{this.title}} x {{this.quantity}} <span class="pull-right">{{format_amount this.total_item_price}}</span></li>
+            {{/each}}
+        </ul>
+        <input type="hidden" id="order_id" value="{{result._id}}">
+    </div>
+</div>  

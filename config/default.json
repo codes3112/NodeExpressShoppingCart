@@ -1,0 +1,15 @@
+{
+    "application": {
+        "cart_title": "MyMovieCart",
+        "cart_logo": "logo.gif",
+        "number_products_index": 8,
+        "base_url": "http://localhost:7777",
+        "flat_shipping": 10.00,
+        "free_shipping_amount": 100.00,
+        "paypal_username": "mrvautin-facilitator_api1.gmail.com",
+        "paypal_password": "1377492083",
+        "paypal_signature": "AFcWxV21C7fd0v3bYYYRCpSSRl31AhW7RF0gpHVXMlD7LmcPrNwnkEWR",
+        "paypal_cart_description": "ExpressCart Payment",
+        "paypal_currency": "USD"
+    }
+}
