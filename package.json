@@ -1,5 +1,5 @@
 {
-  "name": "ExpressCart",
+  "name": "expresscart",
   "version": "1.0.3",
   "private": false,
   "scripts": {
@@ -16,7 +16,7 @@
     "express-handlebars": "^2.0.1",
     "express-session": "^1.11.3",
     "glob": "^5.0.14",
-    "hbs": "~2.7.0",
+    "hbs": "~4.0.12",
     "lunr": "^0.5.12",
     "markdown-it": "^4.4.0",
     "markdown-it-classy": "^0.2.0",
@@ -26,7 +26,6 @@
     "nedb": "^1.1.2",
     "nedb-session-store": "^1.1.1",
     "numeral": "^1.5.3",
-    "paypal-express-checkout": "^1.2.0",
     "rimraf": "^2.5.2",
     "serve-favicon": "^2.5.0",
     "sitemap": "^1.6.0",
@@ -35,25 +34,23 @@
   "description": "ExpressCart",
   "main": "app.js",
   "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mrvautin/ExpressCart.git"
-  },
   "keywords": [
     "Shopping cart",
-    "markdown",
     "express",
     "nedb",
     "nodejs",
     "ecommerce",
-    "paypal",
     "lunr",
     "cart"
   ],
-  "author": "Mark Moffat",
+  "author": "Sneha Arora",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mrvautin/ExpressCart/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codes3112/NodeExpressShoppingCart.git"
   },
-  "homepage": "http://mrvautin.com"
+  "bugs": {
+    "url": "https://github.com/codes3112/NodeExpressShoppingCart/issues"
+  },
+  "homepage": "https://github.com/codes3112/NodeExpressShoppingCart#readme"
 }
